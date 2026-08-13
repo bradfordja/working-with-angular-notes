@@ -38,7 +38,7 @@ Less control for complex validation
 Reactive Forms
 
 The form model is created explicitly in TypeScript.
-``ts
+```ts
 import {
   FormControl,
   FormGroup,
@@ -73,12 +73,12 @@ For enterprise applications, Reactive Forms are usually preferred because they�
 ## 2. Important Reactive Form Classes
 
 You should know these four extremely well:
-
+```ts
 FormControl
 FormGroup
 FormArray
 FormBuilder
-
+```
 FormControl
 
 Represents one input.
@@ -86,7 +86,7 @@ Represents one input.
 name = new FormControl('');
 
 Conceptually:
-
+```tx
 FormControl
      │
      ├── value
@@ -94,7 +94,7 @@ FormControl
      ├── touched / untouched
      ├── dirty / pristine
      └── errors
-
+```
 For example:
 ```ts
 email = new FormControl('', [
@@ -252,7 +252,7 @@ password: ['', [
 ## 7. Displaying Validation Errors
 
 You usually don’t want errors displayed before the user interacts with a field.
-
+```ts
 @if (
   userForm.get('email')?.invalid &&
   userForm.get('email')?.touched
@@ -261,9 +261,9 @@ You usually don’t want errors displayed before the user interacts with a field
     Invalid email address
   </div>
 }
-
+```
 Better:
-
+```ts
 @if (
   userForm.controls.email.hasError('required') &&
   userForm.controls.email.touched
@@ -275,7 +275,7 @@ Better:
 ) {
   <span>Enter a valid email.</span>
 }
-
+```
 ⸻
 
 ## 8. Form State

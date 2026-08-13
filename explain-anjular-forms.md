@@ -1,4 +1,4 @@
-Angular Forms — Senior Interview Prep
+# Angular Forms — Senior Interview Prep
 
 Angular provides two primary approaches for building forms:
 
@@ -8,12 +8,12 @@ Reactive Forms	Complex, scalable, enterprise applications
 
 For a senior Angular interview, spend most of your preparation on Reactive Forms.
 
-1. Template-Driven vs Reactive Forms
+## 1. Template-Driven vs Reactive Forms
 
 Template-Driven Forms
 
 Most of the form logic is defined in the HTML template using directives such as ngModel.
-
+```html
 <form #userForm="ngForm">
   <input
     type="text"
@@ -25,7 +25,7 @@ Most of the form logic is defined in the HTML template using directives such as 
     Submit
   </button>
 </form>
-
+```
 Characteristics:
 
 Simple
@@ -38,7 +38,7 @@ Less control for complex validation
 Reactive Forms
 
 The form model is created explicitly in TypeScript.
-
+``ts
 import {
   FormControl,
   FormGroup,
@@ -51,9 +51,9 @@ userForm = new FormGroup({
     Validators.email
   ])
 });
-
+```
 HTML:
-
+```html
 <form
   [formGroup]="userForm"
   (ngSubmit)="submit()">
@@ -65,12 +65,12 @@ HTML:
     Submit
   </button>
 </form>
-
+```
 For enterprise applications, Reactive Forms are usually preferred because they’re easier to test and support complex validation, dynamic controls, and reactive programming.
 
 ⸻
 
-2. Important Reactive Form Classes
+## 2. Important Reactive Form Classes
 
 You should know these four extremely well:
 
@@ -96,18 +96,18 @@ FormControl
      └── errors
 
 For example:
-
+```ts
 email = new FormControl('', [
   Validators.required,
   Validators.email
 ]);
-
+```
 ⸻
 
-3. FormGroup
+## 3. FormGroup
 
 A FormGroup represents a collection of controls.
-
+```ts
 userForm = new FormGroup({
   firstName: new FormControl(''),
   lastName: new FormControl(''),
@@ -116,38 +116,38 @@ userForm = new FormGroup({
     Validators.email
   ])
 });
-
+```
 Get the entire object:
-
+```ts
 console.log(this.userForm.value);
-
+```
 Result:
-
+```ts
 {
   "firstName": "John",
   "lastName": "Smith",
   "email": "john@example.com"
 }
-
+```
 Access one field:
-
+```ts
 this.userForm.get('email')?.value;
-
+```
 ⸻
 
-4. FormBuilder
+## 4. FormBuilder
 
 FormBuilder reduces boilerplate.
 
 Instead of:
-
+```ts
 new FormGroup({
   firstName: new FormControl(''),
   lastName: new FormControl('')
 });
-
+```
 you can use:
-
+```ts
 constructor(
   private fb: FormBuilder
 ) {}
@@ -159,9 +159,9 @@ userForm = this.fb.group({
     Validators.email
   ]]
 });
-
+```
 Modern Angular also supports strongly typed/non-nullable forms:
-
+```ts
 private fb = inject(NonNullableFormBuilder);
 userForm = this.fb.group({
   firstName: [''],
@@ -171,19 +171,19 @@ userForm = this.fb.group({
     Validators.email
   ]]
 });
-
+```
 This gives better TypeScript type safety.
 
 ⸻
 
-5. FormArray
+## 5. FormArray
 
 This is a common senior interview topic.
 
 Use FormArray when the number of fields is dynamic.
 
 For example, a user can have multiple phone numbers:
-
+```tx
 User
  ├── name
  ├── email
@@ -191,47 +191,47 @@ User
       ├── phone 1
       ├── phone 2
       └── phone 3
-
+```
 Example:
-
+```ts
 userForm = this.fb.group({
   name: [''],
   phones: this.fb.array([])
 });
-
+```
 Getter:
-
+```ts
 get phones(): FormArray {
   return this.userForm.get('phones') as FormArray;
 }
-
+```
 Add a phone:
-
+```ts
 addPhone(): void {
   this.phones.push(
     this.fb.control('')
   );
 }
-
+```
 Remove:
-
+```ts
 removePhone(index: number): void {
   this.phones.removeAt(index);
 }
-
+```
 ⸻
 
-6. Built-in Validators
+## 6. Built-in Validators
 
 Angular provides common validators.
-
+```ts
 email: ['', [
   Validators.required,
   Validators.email
 ]]
-
+```
 Other examples:
-
+```ts
 Validators.required
 Validators.email
 Validators.minLength(8)
@@ -239,17 +239,17 @@ Validators.maxLength(50)
 Validators.min(18)
 Validators.max(100)
 Validators.pattern(...)
-
+```
 Example password:
-
+```ts
 password: ['', [
   Validators.required,
   Validators.minLength(8)
 ]]
-
+```
 ⸻
 
-7. Displaying Validation Errors
+## 7. Displaying Validation Errors
 
 You usually don’t want errors displayed before the user interacts with a field.
 
@@ -278,7 +278,7 @@ Better:
 
 ⸻
 
-8. Form State
+## 8. Form State
 
 Angular automatically tracks form state.
 
@@ -302,7 +302,7 @@ touched means the user entered and then left the control.
 
 ⸻
 
-9. setValue() vs patchValue()
+## 9. setValue() vs patchValue()
 
 This is a very common Angular interview question.
 
@@ -346,7 +346,7 @@ setValue() requires the complete form structure, while patchValue() allows parti
 
 ⸻
 
-10. valueChanges
+## 10. valueChanges
 
 Reactive Forms integrate naturally with RxJS.
 
@@ -389,7 +389,7 @@ REST API
 
 ⸻
 
-11. Custom Validators
+## 11. Custom Validators
 
 Suppose usernames cannot contain spaces.
 
@@ -418,7 +418,7 @@ username: ['', [
 
 ⸻
 
-12. Cross-Field Validation
+## 12. Cross-Field Validation
 
 Another important senior topic.
 
@@ -457,7 +457,7 @@ Notice that the validator is attached to the FormGroup, because validation depen
 
 ⸻
 
-13. Async Validators
+## 13. Async Validators
 
 An async validator typically calls a backend.
 
@@ -499,7 +499,7 @@ Server-side business rules
 
 ⸻
 
-14. Submitting a Form to REST API
+## 14. Submitting a Form to REST API
 
 A typical enterprise flow:
 
@@ -550,7 +550,7 @@ Spring Boot / Node API
 
 ⸻
 
-15. reset()
+## 15. reset()
 
 After successful submission:
 
@@ -566,7 +566,7 @@ this.userForm.reset({
 
 ⸻
 
-16. Disabled Controls and getRawValue()
+## 16. Disabled Controls and getRawValue()
 
 This is a useful senior interview gotcha.
 
@@ -595,7 +595,7 @@ Interview answer:
 
 ⸻
 
-17. ControlValueAccessor
+## 17. ControlValueAccessor
 
 For senior Angular roles, understand ControlValueAccessor.
 
@@ -619,7 +619,7 @@ This is important when building reusable enterprise component libraries.
 
 ⸻
 
-18. Common Interview Questions
+## 18. Common Interview Questions
 
 Why use Reactive Forms?
 

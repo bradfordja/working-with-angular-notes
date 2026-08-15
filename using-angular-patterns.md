@@ -1,9 +1,9 @@
 
 # Using Angular patterns development
 
-## Angular is a platform and framework for building single-page client applications using HTML and TypeScript. Angular developers often rely on design patterns to solve common problems in a consistent and efficient manner. These patterns help in making the code more modular, scalable, and maintainable. Here are some of the most common Angular patterns with explanations and sample use-cases, including code snippets:
+### Angular is a platform and framework for building single-page client applications using HTML and TypeScript. Angular developers often rely on design patterns to solve common problems in a consistent and efficient manner. These patterns help in making the code more modular, scalable, and maintainable. Here are some of the most common Angular patterns with explanations and sample use-cases, including code snippets:
 
-### 1. Singleton Services
+## 1. Singleton Services
 
 - **Explanation**: Singleton services are instances of a class that are created once and shared throughout the application. This pattern is useful for sharing data and functionality across components.
 - **Use-case**: A user authentication service that stores the current user's information.
@@ -29,7 +29,7 @@ export class AuthService {
 }
 ```
 
-### 2. Observable Data Services
+## 2. Observable Data Services
 
 - **Explanation**: This pattern involves creating services that use RxJS Observables to manage and stream data asynchronously across components.
 - **Use-case**: A live chat application where messages need to be updated in real-time.
@@ -51,7 +51,7 @@ export class ChatService {
 }
 ```
 
-### 3. Lazy Loading Modules
+## 3. Lazy Loading Modules
 
 - **Explanation**: Lazy loading is a pattern where you load Angular modules only when they are needed, rather than loading all at once. This improves the startup time.
 - **Use-case**: Loading the admin module only when the user navigates to the admin section.
@@ -66,7 +66,7 @@ const routes: Routes = [
 ];
 ```
 
-### 4. Component Communication using @Input/@Output
+## 4. Component Communication using @Input/@Output
 
 - **Explanation**: This pattern involves parent-child component communication using `@Input` to pass data down to child components, and `@Output` along with `EventEmitter` to send data up from child to parent components.
 - **Use-case**: A todo list where a parent component manages the list and child components display each todo item.
@@ -100,7 +100,7 @@ export class TodoItemComponent {
 }
 ```
 
-### 5. Decorators
+## 5. Decorators
 
 - **Explanation**: Decorators are a design pattern used to separate modification or decoration of a class without modifying the original source code. In Angular, decorators like `@Component`, `@Directive`, `@Pipe`, and `@Injectable` are used extensively to define metadata for classes.
 - **Use-case**: Defining a new component.
@@ -115,4 +115,4 @@ import { Component } from '@angular/core';
 export class ExampleComponent {}
 ```
 
-## These patterns are fundamental to Angular development, enabling developers to build robust, efficient, and scalable applications. By understanding and applying these patterns, developers can leverage Angular's powerful features to their fullest.
+### These patterns are fundamental to Angular development, enabling developers to build robust, efficient, and scalable applications. By understanding and applying these patterns, developers can leverage Angular's powerful features to their fullest.
